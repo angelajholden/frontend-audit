@@ -4,7 +4,32 @@ You are auditing an existing website or web application repository.
 
 Your first task is to understand how the frontend is built before performing any code audit.
 
-Do not modify any files.
+Do not modify any project source files.
+
+## Project Output Directory
+
+Before performing the discovery audit, establish a project-specific output directory for this audit.
+
+Determine a short, filesystem-safe project name from the repository name or project metadata.
+
+- Prefer the repository name when one is available.
+- Normalize the name only as needed for filesystem safety.
+- Do not invent a different marketing or display name.
+- Reuse the same project name for every later audit prompt for this project.
+
+Create:
+
+`output/<project-name>/`
+
+Write the completed discovery report to:
+
+`output/<project-name>/00-project-discovery.md`
+
+If the project directory or report already exists, reuse the directory and replace the report with the results of the current audit.
+
+Do not write this report directly into `output/` when auditing a named project. The `output/` directory may contain audit folders for multiple projects.
+
+Include the chosen project name and output directory in the discovery report so later prompts can reliably use the same location.
 
 ## Goal
 
@@ -182,6 +207,16 @@ Prefer auditing the project's editable source files.
 
 Return a concise report using this structure:
 
+### Project Name
+
+State the filesystem-safe project name chosen for this audit.
+
+### Output Directory
+
+State the project-specific output directory:
+
+`output/<project-name>/`
+
 ### Audit Suitability
 
 State one of:
@@ -226,7 +261,8 @@ Identify anything later audit prompts need to understand about this particular a
 
 ## Rules
 
-- Do not modify any files.
+- Do not modify any project source files.
+- The only file this prompt should create or replace is `output/<project-name>/00-project-discovery.md` and any directory needed to contain it.
 - Do not refactor code.
 - Do not install dependencies.
 - Do not upgrade packages.

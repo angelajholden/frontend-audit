@@ -1,5 +1,29 @@
 # Prompt 06: Final Frontend Audit Report
 
+Before beginning, locate and read the project's completed discovery report at:
+
+`output/<project-name>/00-project-discovery.md`
+
+Use the **Project Name** and **Output Directory** recorded in that report. Do not guess or create a different project name for the final report.
+
+If the discovery report is missing, stop and run Prompt 00 before continuing.
+
+Then read the completed audit reports from that same project-specific output directory:
+
+- `01-html-audit.md`
+- `02-css-audit.md`
+- `03-javascript-audit.md`
+- `04-accessibility-audit.md`
+- `05-seo-audit.md`
+
+If one or more expected audit reports are missing, identify which reports are missing and stop rather than producing an incomplete final report.
+
+Write the completed final report to:
+
+`output/<project-name>/06-final-report.md`
+
+If that report already exists, replace it with the results of the current audit.
+
 Create a final frontend audit report using the completed:
 
 - Project Discovery
@@ -9,7 +33,7 @@ Create a final frontend audit report using the completed:
 - Accessibility Audit
 - SEO Audit
 
-Do not modify any files.
+Do not modify any project source files.
 
 ## Goal
 
@@ -389,7 +413,8 @@ Do not recommend a rewrite unless the audits demonstrate that the existing archi
 
 ## Rules
 
-- Do not modify files.
+- Do not modify project source files.
+- The only file this prompt should create or replace is `output/<project-name>/06-final-report.md` and any directory needed to contain it.
 - Do not concatenate the previous audits.
 - Deduplicate overlapping findings.
 - Identify root causes.

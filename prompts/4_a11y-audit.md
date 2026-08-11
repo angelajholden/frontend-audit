@@ -1,10 +1,26 @@
 # Prompt 04: Accessibility Audit
 
+Before beginning this audit, locate and read the project's completed discovery report at:
+
+`output/<project-name>/00-project-discovery.md`
+
+Use the **Project Name**, **Output Directory**, source locations, exclusions, and caveats recorded in that report. Do not guess or create a different project name for this audit.
+
+If the discovery report is missing, stop and run Prompt 00 before continuing.
+
+You may also reference the completed HTML, CSS, and JavaScript reports in the same project output directory where helpful, but verify accessibility findings against the source rather than assuming earlier findings are correct.
+
+Write the completed accessibility audit to:
+
+`output/<project-name>/04-accessibility-audit.md`
+
+If that report already exists, replace it with the results of the current audit.
+
 Audit the project's frontend for accessibility issues.
 
 Use the Project Discovery report and the previous HTML, CSS, and JavaScript audits to identify the correct source files and relevant implementation patterns.
 
-Do not modify any files.
+Do not modify any project source files.
 
 ## Goal
 
@@ -392,7 +408,9 @@ Do not add `aria-label` when visible text or native semantics already provide an
 Pay particular attention to:
 
 ```html
-role="menu" role="menubar" role="menuitem"
+role="menu"
+role="menubar"
+role="menuitem"
 ```
 
 These roles have specific interaction expectations.
@@ -410,7 +428,7 @@ Review source-level evidence involving:
 Identify substantial motion or animation that may need:
 
 ```css
-@media (prefers-reduced-motion: reduce);
+@media (prefers-reduced-motion: reduce)
 ```
 
 Prioritize:
@@ -641,7 +659,8 @@ Only include strengths supported by the source.
 
 ## Rules
 
-- Do not modify files.
+- Do not modify project source files.
+- The only file this prompt should create or replace is `output/<project-name>/04-accessibility-audit.md` and any directory needed to contain it.
 - Do not claim the website is fully accessible.
 - Do not claim the website is WCAG compliant.
 - Do not claim legal compliance.

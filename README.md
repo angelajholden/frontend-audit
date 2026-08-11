@@ -113,13 +113,13 @@ The presence of Node.js, npm, Vite, TypeScript, Tailwind, or another build tool 
 Run the prompts in order:
 
 ```text
-00-project-discovery.md
-01-html-audit.md
-02-css-audit.md
-03-javascript-audit.md
-04-accessibility-audit.md
-05-seo-audit.md
-06-final-report.md
+0_project-discovery.md
+1_html-audit.md
+2_css-audit.md
+3_javascript-audit.md
+4_a11y-audit.md
+5_seo-audit.md
+6_final-report.md
 ```
 
 ### 00 — Project Discovery
@@ -128,6 +128,7 @@ Examines the repository before any audit begins.
 
 It identifies:
 
+- the filesystem-safe project name and output directory
 - how HTML is produced
 - how CSS is organized
 - how JavaScript is loaded
@@ -136,7 +137,7 @@ It identifies:
 - generated and vendor files
 - whether the project is within scope
 
-This prevents later prompts from making assumptions about the architecture.
+This prevents later prompts from making assumptions about the architecture and gives every later audit a shared source of truth.
 
 ### 01 — HTML Audit
 
@@ -381,23 +382,19 @@ Separating severity from confidence helps prevent speculative findings from bein
 
 ## Using the Prompts
 
-Give the coding agent access to the project you want to audit.
+Give the coding agent access to the project you want to audit and to this Frontend Audit prompt repository.
 
 Begin with:
 
 ```text
-prompts/00-project-discovery.md
+prompts/0_project-discovery.md
 ```
 
-Review the discovery report before continuing.
+Prompt 00 creates `output/<project-name>/00-project-discovery.md`. Review that report before continuing.
 
-If the project is within scope, run the remaining prompts in order.
+If the project is within scope, run the remaining prompts in order. Each later prompt reads the discovery report first and writes its report into the same project-specific directory.
 
-The prompts intentionally instruct the agent:
-
-> Do not modify files.
-
-Frontend Audit is designed as an **audit-first workflow**:
+The prompts intentionally instruct the agent not to modify project source files. Frontend Audit is designed as an **audit-first workflow**:
 
 ```text
 Understand

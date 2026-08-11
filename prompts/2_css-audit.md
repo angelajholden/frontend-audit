@@ -1,10 +1,24 @@
 # Prompt 02: CSS Audit
 
+Before beginning this audit, locate and read the project's completed discovery report at:
+
+`output/<project-name>/00-project-discovery.md`
+
+Use the **Project Name**, **Output Directory**, source locations, exclusions, and caveats recorded in that report. Do not guess or create a different project name for this audit.
+
+If the discovery report is missing, stop and run Prompt 00 before continuing.
+
+Write the completed CSS audit to the same project-specific output directory as:
+
+`output/<project-name>/02-css-audit.md`
+
+If that report already exists, replace it with the results of the current audit.
+
 Audit the project's CSS and related styling source files.
 
 Use the Project Discovery report to identify the correct source files and directories.
 
-Do not modify any files.
+Do not modify any project source files.
 
 ## Goal
 
@@ -318,7 +332,7 @@ Review:
 Check whether substantial non-essential motion accounts for:
 
 ```css
-@media (prefers-reduced-motion: reduce);
+@media (prefers-reduced-motion: reduce)
 ```
 
 Do not require reduced-motion overrides for every minor transition.
@@ -536,7 +550,8 @@ Only include strengths supported by the source.
 
 ## Rules
 
-- Do not modify files.
+- Do not modify project source files.
+- The only file this prompt should create or replace is `output/<project-name>/02-css-audit.md` and any directory needed to contain it.
 - Do not refactor the project.
 - Respect the existing CSS architecture and framework.
 - Do not recommend removing Tailwind, Bootstrap, Sass, or another tool merely because a different approach is possible.

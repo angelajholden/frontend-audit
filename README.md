@@ -6,6 +6,58 @@ The prompts are designed to be used with coding agents such as Codex, Claude Cod
 
 The goal is not to automatically rewrite a project. The goal is to help an agent examine the frontend, identify meaningful problems, and produce a practical report that a developer can review before making changes.
 
+## Running the Audit
+
+### Add this project and the project to audit to Codex and use this prompt to start.
+
+```
+Use the `frontend-audit` project to audit the website project I added to this workspace.
+
+Run all seven prompts in the `frontend-audit/prompts` directory in order, starting with project discovery.
+
+Follow the instructions in each prompt exactly.
+
+Do not modify the website project's source code.
+
+Use Prompt 00 to determine the project name and create the project-specific folder under `frontend-audit/output/`. Write each audit report to that folder as instructed by the prompts.
+
+Complete:
+
+1. Project Discovery
+2. HTML Audit
+3. CSS Audit
+4. JavaScript Audit
+5. Accessibility Audit
+6. SEO Audit
+7. Final Frontend Audit Report
+
+If Project Discovery determines that the project is out of scope for this audit, stop after the discovery report.
+```
+
+Run the seven prompts in order.
+
+Each prompt writes a Markdown report to the `output/` directory.
+
+1. `00-project-discovery.md`
+2. `01-html-audit.md`
+3. `02-css-audit.md`
+4. `03-javascript-audit.md`
+5. `04-accessibility-audit.md`
+6. `05-seo-audit.md`
+7. `06-final-report.md`
+
+The audit prompts must not modify the website being reviewed.
+
+After all seven prompts have run, the `output/` directory will contain:
+
+- `00-project-discovery.md`
+- `01-html-audit.md`
+- `02-css-audit.md`
+- `03-javascript-audit.md`
+- `04-accessibility-audit.md`
+- `05-seo-audit.md`
+- `06-final-report.md`
+
 ## What This Audit Covers
 
 Frontend Audit focuses on:
@@ -69,32 +121,6 @@ Run the prompts in order:
 05-seo-audit.md
 06-final-report.md
 ```
-
-## Running the Audit
-
-Run the seven prompts in order.
-
-Each prompt writes a Markdown report to the `output/` directory.
-
-1. `00-project-discovery.md`
-2. `01-html-audit.md`
-3. `02-css-audit.md`
-4. `03-javascript-audit.md`
-5. `04-accessibility-audit.md`
-6. `05-seo-audit.md`
-7. `06-final-report.md`
-
-The audit prompts must not modify the website being reviewed.
-
-After all seven prompts have run, the `output/` directory will contain:
-
-- `00-project-discovery.md`
-- `01-html-audit.md`
-- `02-css-audit.md`
-- `03-javascript-audit.md`
-- `04-accessibility-audit.md`
-- `05-seo-audit.md`
-- `06-final-report.md`
 
 ### 00 — Project Discovery
 

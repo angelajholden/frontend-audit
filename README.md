@@ -61,40 +61,54 @@ The presence of Node.js, npm, Vite, TypeScript, Tailwind, or another build tool 
 Run the prompts in order:
 
 ```text
-00-project-discovery.md
-01-html-audit.md
-02-css-audit.md
-03-javascript-audit.md
-04-accessibility-audit.md
-05-seo-audit.md
-06-final-report.md
+0_project-discovery.md
+1_html-audit.md
+2_css-audit.md
+3_javascript-audit.md
+4_a11y-audit.md
+5_seo-audit.md
+6_final-report.md
 ```
 
 ## Running the Audit
 
 Run the seven prompts in order.
 
-Each prompt writes a Markdown report to the `output/` directory.
+Prompt 00 establishes a filesystem-safe project name, preferably from the repository name, and creates a project-specific directory under `output/`:
 
-1. `00-project-discovery.md`
-2. `01-html-audit.md`
-3. `02-css-audit.md`
-4. `03-javascript-audit.md`
-5. `04-accessibility-audit.md`
-6. `05-seo-audit.md`
-7. `06-final-report.md`
+```text
+output/<project-name>/
+```
 
-The audit prompts must not modify the website being reviewed.
+Every later prompt reads `output/<project-name>/00-project-discovery.md` before beginning. The discovery report is the source of truth for the project name, output directory, source locations, exclusions, and architectural caveats.
 
-After all seven prompts have run, the `output/` directory will contain:
+Each prompt writes its Markdown report into that same project-specific directory. This allows one copy or fork of Frontend Audit to store audits for multiple projects without their reports colliding.
 
-- `00-project-discovery.md`
-- `01-html-audit.md`
-- `02-css-audit.md`
-- `03-javascript-audit.md`
-- `04-accessibility-audit.md`
-- `05-seo-audit.md`
-- `06-final-report.md`
+For example:
+
+```text
+output/
+├── project-one/
+│   ├── 00-project-discovery.md
+│   ├── 01-html-audit.md
+│   ├── 02-css-audit.md
+│   ├── 03-javascript-audit.md
+│   ├── 04-accessibility-audit.md
+│   ├── 05-seo-audit.md
+│   └── 06-final-report.md
+└── project-two/
+    ├── 00-project-discovery.md
+    ├── 01-html-audit.md
+    ├── 02-css-audit.md
+    ├── 03-javascript-audit.md
+    ├── 04-accessibility-audit.md
+    ├── 05-seo-audit.md
+    └── 06-final-report.md
+```
+
+The audit prompts must not modify the website being reviewed. They may only create or replace their own report files in the appropriate project output directory.
+
+If an audit is rerun for the same project, the existing project directory is reused and the corresponding report is replaced with the current results.
 
 ### 00 — Project Discovery
 
@@ -102,6 +116,7 @@ Examines the repository before any audit begins.
 
 It identifies:
 
+- the filesystem-safe project name and output directory
 - how HTML is produced
 - how CSS is organized
 - how JavaScript is loaded
@@ -110,7 +125,7 @@ It identifies:
 - generated and vendor files
 - whether the project is within scope
 
-This prevents later prompts from making assumptions about the architecture.
+This prevents later prompts from making assumptions about the architecture and gives every later audit a shared source of truth.
 
 ### 01 — HTML Audit
 
@@ -355,23 +370,19 @@ Separating severity from confidence helps prevent speculative findings from bein
 
 ## Using the Prompts
 
-Give the coding agent access to the project you want to audit.
+Give the coding agent access to the project you want to audit and to this Frontend Audit prompt repository.
 
 Begin with:
 
 ```text
-prompts/00-project-discovery.md
+prompts/0_project-discovery.md
 ```
 
-Review the discovery report before continuing.
+Prompt 00 creates `output/<project-name>/00-project-discovery.md`. Review that report before continuing.
 
-If the project is within scope, run the remaining prompts in order.
+If the project is within scope, run the remaining prompts in order. Each later prompt reads the discovery report first and writes its report into the same project-specific directory.
 
-The prompts intentionally instruct the agent:
-
-> Do not modify files.
-
-Frontend Audit is designed as an **audit-first workflow**:
+The prompts intentionally instruct the agent not to modify project source files. Frontend Audit is designed as an **audit-first workflow**:
 
 ```text
 Understand

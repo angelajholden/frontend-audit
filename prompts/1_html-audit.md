@@ -137,7 +137,13 @@ Check for:
 - nested interactive elements
 - links containing inappropriate interactive descendants
 - malformed URLs where evident
-- unnecessary `target="_blank"`
+- `target="_blank"` only when it creates a concrete usability or interaction problem
+
+Do not treat `target="_blank"` as inherently incorrect or outdated. Opening a link in a new tab or window is a valid and commonly used navigation choice.
+
+Do not create a finding solely because `target="_blank"` is present.
+
+Only report it when the specific implementation creates a demonstrated problem, such as misleading behavior, broken workflow, or another concrete usability concern.
 
 Flag links whose visible purpose is unclear as an HTML concern when the markup itself creates that ambiguity.
 
@@ -207,7 +213,13 @@ Check for:
 - inappropriate use of background images for meaningful content
 - misuse of `<figure>`
 - malformed responsive image markup
-- width and height attributes where they are useful for reserving layout space
+- image sizing only when the implementation creates a concrete rendering, responsiveness, or layout-stability problem
+
+Do not report missing `width` and `height` attributes on `<img>` elements merely because they are absent.
+
+Responsive images may be sized through CSS, `aspect-ratio`, layout containers, intrinsic sizing, or other valid techniques.
+
+If the existing layout already controls image dimensions appropriately, do not recommend adding HTML `width` and `height` attributes solely to reserve browser layout space.
 
 Do not perform a detailed accessibility evaluation of alternative text here. That belongs in the accessibility audit.
 
@@ -313,6 +325,8 @@ Report findings when the markup creates or is likely to create problems involvin
 - structural correctness
 
 Distinguish actual problems from optional improvements.
+
+A valid implementation is not a defect merely because another implementation is also considered a best practice. Do not create findings for optional alternatives unless the current implementation produces a concrete problem.
 
 ## Severity
 

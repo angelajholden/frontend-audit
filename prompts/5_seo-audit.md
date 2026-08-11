@@ -1,10 +1,26 @@
 # Prompt 05: SEO Audit
 
+Before beginning this audit, locate and read the project's completed discovery report at:
+
+`output/<project-name>/00-project-discovery.md`
+
+Use the **Project Name**, **Output Directory**, source locations, exclusions, and caveats recorded in that report. Do not guess or create a different project name for this audit.
+
+If the discovery report is missing, stop and run Prompt 00 before continuing.
+
+You may also reference previous audit reports in the same project output directory where helpful, but verify SEO findings against the source rather than assuming earlier findings are correct.
+
+Write the completed SEO audit to:
+
+`output/<project-name>/05-seo-audit.md`
+
+If that report already exists, replace it with the results of the current audit.
+
 Audit the project's frontend for basic technical and on-page SEO issues.
 
 Use the Project Discovery report and previous HTML and accessibility audits to understand how pages are generated and structured.
 
-Do not modify any files.
+Do not modify any project source files.
 
 ## Goal
 
@@ -97,7 +113,7 @@ Do not rewrite every title unless a concrete problem exists.
 Review:
 
 ```html
-<meta name="description" />
+<meta name="description">
 ```
 
 Look for:
@@ -120,7 +136,7 @@ Confirm that the root document declares an appropriate language.
 For example:
 
 ```html
-<html lang="en"></html>
+<html lang="en">
 ```
 
 This may already appear in the accessibility audit.
@@ -220,7 +236,7 @@ Check for canonical metadata where the project architecture suggests it is relev
 For example:
 
 ```html
-<link rel="canonical" href="..." />
+<link rel="canonical" href="...">
 ```
 
 Look for:
@@ -238,7 +254,7 @@ Do not require canonical tags when the project has no realistic duplicate-URL co
 Review relevant directives such as:
 
 ```html
-<meta name="robots" />
+<meta name="robots">
 ```
 
 and `robots.txt`.
@@ -545,7 +561,8 @@ Only include strengths supported by the repository.
 
 ## Rules
 
-- Do not modify files.
+- Do not modify project source files.
+- The only file this prompt should create or replace is `output/<project-name>/05-seo-audit.md` and any directory needed to contain it.
 - Keep this audit lightweight.
 - Prioritize technical and structural SEO.
 - Treat semantic HTML and accessibility as foundational.
